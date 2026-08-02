@@ -1,10 +1,593 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trung Pham — Data Engineer · Semiconductor ML &amp; CPS Security</title>
+<meta name="description" content="Trung Pham — Data Engineer (4 yrs production, GCP + AWS). Data infrastructure for ML systems at fab and cyber-physical scale. Taiwan MOE Research Scholar.">
+<link rel="canonical" href="https://pqtrng.github.io/">
+
+<!-- link preview (email, LINE, Slack, LinkedIn) -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pqtrng.github.io/">
+<meta property="og:title" content="Trung Pham — Data Engineer · Semiconductor ML &amp; CPS Security">
+<meta property="og:description" content="4 years production Data Engineering across GCP and AWS. Data infrastructure for ML systems at fab and cyber-physical scale. Taiwan MOE Research Scholar.">
+<meta property="og:image" content="https://pqtrng.github.io/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Trung Pham — Data Engineer · Semiconductor ML &amp; CPS Security">
+<meta name="twitter:description" content="4 years production Data Engineering across GCP and AWS. Data infrastructure for ML systems at fab and cyber-physical scale. Taiwan MOE Research Scholar.">
+<meta name="twitter:image" content="https://pqtrng.github.io/og.png">
+
+<!-- inline favicon: wafer notch mark, theme-aware, no extra file needed -->
+<link rel="icon" media="(prefers-color-scheme: light)" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='none' stroke='%232b53d6' stroke-width='2.5'/%3E%3Crect x='14.5' y='0.5' width='3' height='5' fill='%232b53d6'/%3E%3Crect x='9' y='9' width='6' height='6' rx='1' fill='%232b53d6'/%3E%3Crect x='17' y='17' width='6' height='6' rx='1' fill='%23a5620a'/%3E%3C/svg%3E">
+<link rel="icon" media="(prefers-color-scheme: dark)" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='none' stroke='%236f96ff' stroke-width='2.5'/%3E%3Crect x='14.5' y='0.5' width='3' height='5' fill='%236f96ff'/%3E%3Crect x='9' y='9' width='6' height='6' rx='1' fill='%236f96ff'/%3E%3Crect x='17' y='17' width='6' height='6' rx='1' fill='%23e0a955'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#f4f6fb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#080c15" media="(prefers-color-scheme: dark)">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  /* LIGHT (default) */
+  --bg:#f4f6fb; --panel:#ffffff; --panel2:#eaeef7;
+  --line:#d7deec; --line-soft:#e5eaf4;
+  --text:#0f1626; --muted:#57667f; --faint:#8b98af;
+  --primary:#2b53d6; --primary-soft:rgba(43,83,214,.09); --primary-line:rgba(43,83,214,.28);
+  --amber:#a5620a; --amber-soft:rgba(165,98,10,.10);
+  --violet:#6c3fd4; --violet-soft:rgba(108,63,212,.09);
+  --red:#c0392b; --red-soft:rgba(192,57,43,.09);
+  --nav-bg:rgba(244,246,251,.82); --shadow:0 1px 2px rgba(15,22,38,.05),0 8px 30px rgba(15,22,38,.06);
+  /* bin-map data colors (theme-independent, tuned for light) */
+  --bin-center:#2b53d6; --bin-edge:#c07c14; --bin-loc:#6c3fd4; --bin-scratch:#c0392b; --bin-empty:#dbe2f0;
+}
+[data-theme="dark"]{
+  --bg:#080c15; --panel:#101623; --panel2:#161f30;
+  --line:#232f45; --line-soft:#1a2334;
+  --text:#e6ecf7; --muted:#8493ae; --faint:#65728c;
+  --primary:#6f96ff; --primary-soft:rgba(111,150,255,.10); --primary-line:rgba(111,150,255,.26);
+  --amber:#e0a955; --amber-soft:rgba(224,169,85,.11);
+  --violet:#a688ff; --violet-soft:rgba(166,136,255,.11);
+  --red:#ff6f6f; --red-soft:rgba(255,111,111,.10);
+  --nav-bg:rgba(8,12,21,.86); --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 34px rgba(0,0,0,.35);
+  --bin-center:#6f96ff; --bin-edge:#e0a955; --bin-loc:#a688ff; --bin-scratch:#ff6f6f; --bin-empty:#1c2740;
+}
+
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden;transition:background .35s,color .35s}
+a{color:var(--primary);text-decoration:none;transition:color .18s,opacity .18s}
+a:hover{opacity:.72}
+:focus-visible{outline:2px solid var(--primary);outline-offset:3px;border-radius:3px}
+.mono{font-family:'IBM Plex Mono',monospace}
+.skip{position:absolute;left:-999px;top:0;background:var(--panel);color:var(--text);padding:10px 14px;border:1px solid var(--line);border-radius:8px;z-index:100}
+.skip:focus{left:12px;top:12px}
+
+/* ---- theme toggle ---- */
+.theme-btn{position:fixed;top:14px;right:16px;z-index:60;width:40px;height:40px;border-radius:11px;border:1px solid var(--line);background:var(--panel);color:var(--text);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);transition:border-color .2s,transform .2s}
+.theme-btn:hover{border-color:var(--primary-line);transform:translateY(-1px)}
+
+/* ---- layout ---- */
+.wrap{max-width:940px;margin:0 auto;padding:0 2rem}
+@media(max-width:600px){.wrap{padding:0 1.3rem}}
+
+/* ---- hero ---- */
+.hero{padding-top:5.5rem;padding-bottom:3.2rem;position:relative}
+.hero-grid{display:grid;grid-template-columns:1fr 300px;gap:3rem;align-items:center}
+@media(max-width:820px){.hero-grid{grid-template-columns:1fr;gap:2.2rem}.hero{padding-top:3.4rem;padding-bottom:2.4rem}}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--primary);margin-bottom:1.3rem}
+.hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.85rem,4.6vw,2.9rem);font-weight:600;line-height:1.14;letter-spacing:-.015em;margin-bottom:1.25rem}
+.hero h1 em{font-style:normal;color:var(--primary)}
+.hero h1 .amb{color:var(--amber)}
+.lede{font-size:1rem;color:var(--muted);max-width:34em;margin-bottom:1.8rem}
+.readout{font-family:'IBM Plex Mono',monospace;font-size:.68rem;color:var(--faint);letter-spacing:.02em;display:flex;flex-wrap:wrap;gap:.35rem 1.1rem;margin-bottom:2rem}
+.readout b{color:var(--muted);font-weight:500}
+.readout .dot{color:var(--primary)}
+.cta-row{display:flex;flex-wrap:wrap;gap:.7rem}
+.btn{font-family:'IBM Plex Mono',monospace;font-size:.78rem;padding:.62rem 1.15rem;border-radius:9px;border:1px solid var(--line);background:var(--panel);color:var(--text);display:inline-flex;align-items:center;gap:.5rem;transition:border-color .2s,transform .2s,background .2s}
+.btn:hover{border-color:var(--primary-line);transform:translateY(-1px);opacity:1}
+.btn.primary{background:var(--primary);border-color:var(--primary);color:#fff}
+.btn.primary:hover{opacity:.9}
+
+/* ---- wafer signature ---- */
+.wafer{width:100%;max-width:300px;margin:0 auto;position:relative}
+.wafer svg{width:100%;height:auto;display:block}
+.wafer .die{opacity:0;transition:opacity .5s ease}
+.wafer.live .die{opacity:1}
+.legend{margin-top:1rem;display:grid;grid-template-columns:1fr 1fr;gap:.3rem .8rem;font-family:'IBM Plex Mono',monospace;font-size:.62rem;color:var(--muted)}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:6px;vertical-align:middle}
+.wafer-cap{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);text-align:center;margin-top:.7rem}
+
+/* ---- stats ---- */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:2.6rem}
+@media(max-width:600px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stat{background:var(--panel);padding:1rem 1.1rem}
+.stat .v{font-family:'Space Grotesk',sans-serif;font-size:1.5rem;font-weight:600;color:var(--primary);letter-spacing:-.02em}
+.stat .l{font-family:'IBM Plex Mono',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-top:.25rem}
+
+/* ---- nav ---- */
+nav{position:sticky;top:0;z-index:40;background:var(--nav-bg);backdrop-filter:blur(14px);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.nav-inner{max-width:940px;margin:0 auto;padding:.7rem 2rem;display:flex;gap:.4rem;flex-wrap:wrap;align-items:center}
+@media(max-width:600px){.nav-inner{padding:.6rem 1.3rem}}
+nav a{font-family:'IBM Plex Mono',monospace;font-size:.74rem;color:var(--muted);padding:.4rem .8rem;border-radius:7px;letter-spacing:.02em}
+nav a:hover{color:var(--text);opacity:1}
+nav a.active{color:var(--primary);background:var(--primary-soft)}
+
+/* ---- sections ---- */
+.sec{padding:3.4rem 0;border-top:1px solid var(--line-soft)}
+.sec:first-of-type{border-top:none}
+.sec-eye{font-family:'IBM Plex Mono',monospace;font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;color:var(--primary);margin-bottom:.55rem}
+.sec-h{font-family:'Space Grotesk',sans-serif;font-size:1.5rem;font-weight:600;letter-spacing:-.01em;margin-bottom:1.5rem}
+.prose{font-size:.95rem;color:var(--muted)}
+.prose strong{color:var(--text);font-weight:600}
+.prose em{color:var(--text);font-style:italic}
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* ---- track boxes ---- */
+.tracks{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.5rem}
+@media(max-width:700px){.tracks{grid-template-columns:1fr}}
+.track{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:1.2rem 1.3rem;box-shadow:var(--shadow)}
+.track .tt{font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--primary);letter-spacing:.02em;margin-bottom:.6rem;display:flex;align-items:center;gap:.5rem}
+.track.b .tt{color:var(--amber)}
+.track .tp{font-size:.86rem;color:var(--muted)}
+
+/* ---- skill panels ---- */
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:1.1rem 1.2rem;margin-top:1rem;box-shadow:var(--shadow)}
+.panel .pt{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.06em;color:var(--faint);text-transform:uppercase;margin-bottom:.75rem}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem}
+.chip{font-family:'IBM Plex Mono',monospace;font-size:.72rem;padding:.32rem .65rem;border-radius:7px;background:var(--panel2);border:1px solid var(--line);color:var(--text)}
+.chip.key{border-color:var(--primary-line);color:var(--primary);background:var(--primary-soft)}
+.chip.dash{border-style:dashed;color:var(--muted)}
+
+/* ---- timeline ---- */
+.tl{position:relative;padding-left:1.6rem;margin-top:.4rem}
+.tl::before{content:'';position:absolute;left:5px;top:8px;bottom:8px;width:1px;background:var(--line)}
+.tl-item{position:relative;padding-bottom:1.6rem}
+.tl-item:last-child{padding-bottom:0}
+.tl-item::before{content:'';position:absolute;left:-1.6rem;top:7px;width:11px;height:11px;border-radius:3px;background:var(--panel);border:2px solid var(--primary);box-shadow:0 0 0 4px var(--bg)}
+.tl-item.moe::before{border-color:var(--amber)}
+.tl-item .role{font-family:'Space Grotesk',sans-serif;font-size:.98rem;font-weight:600;color:var(--text)}
+.tl-item .when{font-family:'IBM Plex Mono',monospace;font-size:.68rem;color:var(--faint);margin:.25rem 0 .5rem;letter-spacing:.02em}
+.tl-item .when .tag{color:var(--amber)}
+.tl-item .d{font-size:.88rem;color:var(--muted)}
+
+/* ---- project cards ---- */
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:1.5rem;margin-bottom:1.1rem;box-shadow:var(--shadow);transition:border-color .25s,transform .25s}
+.card:hover{border-color:var(--primary-line);transform:translateY(-2px)}
+.card .top{display:flex;justify-content:space-between;align-items:flex-start;gap:.8rem;flex-wrap:wrap;margin-bottom:.85rem}
+.card .nm{font-family:'Space Grotesk',sans-serif;font-size:1.08rem;font-weight:600;letter-spacing:-.01em}
+.badges{display:flex;gap:.4rem;flex-wrap:wrap}
+.badge{font-family:'IBM Plex Mono',monospace;font-size:.6rem;padding:.24rem .55rem;border-radius:6px;text-transform:uppercase;letter-spacing:.08em;white-space:nowrap;border:1px solid transparent}
+.b-semi{background:var(--amber-soft);color:var(--amber);border-color:var(--amber-soft)}
+.b-de{background:var(--primary-soft);color:var(--primary);border-color:var(--primary-line)}
+.b-ml{background:var(--violet-soft);color:var(--violet);border-color:var(--violet-soft)}
+.b-sec{background:var(--red-soft);color:var(--red);border-color:var(--red-soft)}
+.b-wip{background:var(--amber-soft);color:var(--amber);border:1px dashed var(--amber)}
+.b-done{background:var(--panel2);color:var(--muted);border-color:var(--line)}
+.card .desc{font-size:.88rem;color:var(--muted);margin-bottom:.85rem}
+.card .metric{font-family:'IBM Plex Mono',monospace;font-size:.76rem;color:var(--text);background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:.55rem .75rem;margin-bottom:.85rem;display:flex;gap:.5rem;flex-wrap:wrap}
+.card .metric b{color:var(--primary);font-weight:600}
+.card .metric.stack{flex-direction:column;gap:.5rem;line-height:1.55}
+.card .metric code{font-family:'IBM Plex Mono',monospace;font-size:.72rem;background:var(--primary-soft);color:var(--primary);padding:.05rem .3rem;border-radius:4px}
+.tech{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:.9rem}
+.tech span{font-family:'IBM Plex Mono',monospace;font-size:.66rem;padding:.24rem .55rem;border-radius:6px;background:var(--panel2);color:var(--muted)}
+.card .links a{font-family:'IBM Plex Mono',monospace;font-size:.76rem;margin-right:1.1rem}
+.card .links .soon{font-family:'IBM Plex Mono',monospace;font-size:.76rem;color:var(--faint)}
+
+/* ---- publication ---- */
+.pub{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--violet);border-radius:0 12px 12px 0;padding:1.2rem 1.4rem;box-shadow:var(--shadow)}
+.pub .venue{font-family:'IBM Plex Mono',monospace;font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--violet);margin-bottom:.5rem}
+.pub .ti{font-family:'Space Grotesk',sans-serif;font-size:.98rem;font-weight:600;margin-bottom:.35rem}
+.pub .au{font-size:.82rem;color:var(--muted)}
+.pub .au u{text-decoration:underline;text-underline-offset:2px;color:var(--text)}
+.pub .ab{font-size:.85rem;color:var(--muted);margin-top:.6rem}
+
+/* ---- honors ---- */
+.honors{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:.4rem}
+@media(max-width:600px){.honors{grid-template-columns:1fr}}
+.honor{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--amber);border-radius:0 12px 12px 0;padding:1.1rem 1.25rem;box-shadow:var(--shadow);transition:border-color .2s,transform .2s}
+.honor:hover{transform:translateY(-2px)}
+.honor .yr{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.14em;color:var(--amber);margin-bottom:.4rem}
+.honor .ht{font-family:'Space Grotesk',sans-serif;font-size:.98rem;font-weight:600;letter-spacing:-.01em;margin-bottom:.35rem}
+.honor .hi{font-size:.82rem;color:var(--muted)}
+
+/* ---- contact ---- */
+.avail{font-family:'IBM Plex Mono',monospace;font-size:.8rem;color:var(--muted);margin-bottom:1.2rem}
+.avail b{color:var(--primary)}
+.cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:.9rem}
+@media(max-width:600px){.cgrid{grid-template-columns:1fr}}
+.ci{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:1.1rem;box-shadow:var(--shadow);transition:border-color .2s,transform .2s}
+.ci:hover{border-color:var(--primary-line);transform:translateY(-2px)}
+.ci .l{font-family:'IBM Plex Mono',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.12em;color:var(--faint);margin-bottom:.4rem}
+.ci a{font-family:'IBM Plex Mono',monospace;font-size:.82rem}
+
+footer{text-align:center;padding:2.6rem 1rem;color:var(--faint);font-size:.7rem;border-top:1px solid var(--line);font-family:'IBM Plex Mono',monospace;letter-spacing:.04em}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{animation:none!important;transition:none!important}
+  .wafer .die{opacity:1}
+  .reveal{opacity:1;transform:none}
+}
+</style>
 </head>
 <body>
-$END$
+<a href="#main" class="skip">Skip to content</a>
+<button class="theme-btn" id="themeBtn" onclick="toggleTheme()" aria-label="Toggle dark and light theme" title="Toggle theme">🌙</button>
+
+<header class="hero wrap">
+  <div class="hero-grid">
+    <div>
+      <div class="eyebrow">Data Engineer · Semiconductor ML &amp; CPS Security</div>
+      <h1>I build the <em>data infrastructure</em> behind <span class="amb">wafer-yield</span> ML and cyber-physical <em>security</em>.</h1>
+      <p class="lede">Data Engineer with 4 years of production experience across <strong>GCP and AWS</strong> — where cost, reliability and observability are measured rather than asserted. I turn inspection, sensor and telemetry data into reliable, reproducible ML signal at fab and industrial scale.</p>
+      <div class="readout">
+        <span><b>STATUS</b> <span class="dot">▸</span> open to Taiwan — industry &amp; research</span>
+        <span><b>STACK</b> <span class="dot">▸</span> GCP + AWS · PySpark · Terraform · PyTorch</span>
+        <span><b>LINK</b> <span class="dot">▸</span> Taiwan MOE Scholar</span>
+      </div>
+      <div class="cta-row">
+        <a class="btn primary" href="#projects">View projects</a>
+        <a class="btn" href="Trung_Pham_CV.pdf" target="_blank" rel="noopener">CV (PDF) ↓</a>
+        <a class="btn" href="mailto:pqtrng@outlook.com">Email me →</a>
+        <a class="btn" href="https://github.com/pqtrng" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+    </div>
+    <div>
+      <div class="wafer" id="wafer">
+        <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustrative wafer bin-map showing defect-class clusters">
+          <circle cx="120" cy="120" r="112" fill="none" stroke="var(--line)" stroke-width="1"/>
+          <circle cx="120" cy="120" r="112" fill="none" stroke="var(--primary-line)" stroke-width="1" stroke-dasharray="2 6"/>
+          <line x1="120" y1="8" x2="120" y2="26" stroke="var(--line)" stroke-width="1"/>
+          <defs><clipPath id="wc"><circle cx="120" cy="120" r="108"/></clipPath></defs>
+          <g clip-path="url(#wc)" id="dies"></g>
+        </svg>
+        <div class="legend">
+          <span><i style="background:var(--bin-center)"></i>Center</span>
+          <span><i style="background:var(--bin-edge)"></i>Edge-Ring</span>
+          <span><i style="background:var(--bin-loc)"></i>Loc</span>
+          <span><i style="background:var(--bin-scratch)"></i>Scratch</span>
+        </div>
+        <div class="wafer-cap">Illustrative bin-map · WM-811K defect classes</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="v">4 yrs</div><div class="l">Production DE</div></div>
+    <div class="stat"><div class="v">−42%</div><div class="l">Ingestion cost</div></div>
+    <div class="stat"><div class="v">MOE</div><div class="l">Taiwan Scholar</div></div>
+    <div class="stat"><div class="v">ATC'21</div><div class="l">Publication</div></div>
+  </div>
+</header>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#about" class="active">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#research">Research</a>
+    <a href="#publication">Publication</a>
+    <a href="#honors">Honors</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<main id="main" class="wrap">
+
+  <section class="sec" id="about">
+    <div class="sec-eye reveal">// about</div>
+    <h2 class="sec-h reveal">A DE-first engineer for ML infrastructure — in fabs and in security</h2>
+    <div class="prose reveal">
+      I am a <strong>Data Engineer with 4 years of production experience</strong> building reliable, observable and cost-efficient data pipelines across <strong>GCP and AWS</strong> — ETL/ELT systems, data-lake design and migration, infrastructure as code, and the observability that keeps them honest. I began with a BA in Business Administration (International Business) from <strong>Foreign Trade University</strong> (Vietnam), then moved into engineering with a <strong>Computer Science degree from Vietnamese-German University (VGU), in dual-degree partnership with Frankfurt University of Applied Sciences</strong> (Germany · GPA 1.6 ≈ 8.6/10).
+      <br><br>
+      My link to Taiwan is concrete. In 2020 I was a <strong>Ministry of Education (MOE) Research Scholarship recipient at National Chung Cheng University (CCU)</strong>, working on AI for in-hospital elderly-patient monitoring. I am now working toward a longer-term move into Taiwan&#39;s semiconductor ecosystem — in industry or in a research group where the data layer is the bottleneck.
+      <br><br>
+      My <em>value-add is the same across both directions I care about</em>: making ML maintainable, reproducible, and operable at scale inside a real data backbone. A fab and a cyber-physical system share one engineering problem — high-volume inspection / sensor / telemetry data that must be ingested, normalized, and turned into a reliable signal. I build that <strong>ingest → process → detect → serve</strong> pipeline.
+    </div>
+
+    <div class="tracks reveal">
+      <div class="track a">
+        <div class="tt">▸ track_A — semiconductor ML / MLOps</div>
+        <div class="tp">Wafer-defect recognition, equipment-health monitoring, AI-assisted EDA — the data-pipeline discipline behind fab yield analysis.</div>
+      </div>
+      <div class="track b">
+        <div class="tt">▸ track_B — cyber-physical security</div>
+        <div class="tp">Not a SOC analyst — the engineer who builds the scalable telemetry pipeline and multi-stage anomaly-detection infrastructure for the OT layer that SEMI E187 leaves out of scope (PLC/SCADA), aligned with IEC 62443.</div>
+      </div>
+    </div>
+
+    <div class="panel reveal">
+      <div class="pt">Production — GCP · current (Semrush)</div>
+      <div class="chips">
+        <span class="chip key">Python</span>
+        <span class="chip key">PySpark / Dataproc</span>
+        <span class="chip key">SQL / BigQuery</span>
+        <span class="chip key">Terraform (IaC)</span>
+        <span class="chip key">Docker</span>
+        <span class="chip">GCP Workflows</span>
+        <span class="chip">Cloud Functions</span>
+        <span class="chip">Cloud Storage · Parquet tiering</span>
+        <span class="chip">PostgreSQL</span>
+      </div>
+    </div>
+    <div class="panel reveal">
+      <div class="pt">Production — AWS · prior (RYTE)</div>
+      <div class="chips">
+        <span class="chip key">Step Functions</span>
+        <span class="chip key">Lambda / Glue</span>
+        <span class="chip key">S3 / Athena</span>
+        <span class="chip key">AWS CDK (TypeScript)</span>
+        <span class="chip">EventBridge</span>
+        <span class="chip">DynamoDB</span>
+        <span class="chip">Apache Iceberg</span>
+      </div>
+    </div>
+    <div class="panel reveal">
+      <div class="pt">Reliability, observability &amp; cost (FinOps)</div>
+      <div class="chips">
+        <span class="chip key">Prometheus / StatsD</span>
+        <span class="chip key">SLI/SLO-as-code</span>
+        <span class="chip">GitLab CI/CD</span>
+        <span class="chip">GitHub Actions</span>
+        <span class="chip">Schema governance · managed → external</span>
+        <span class="chip">Retry &amp; concurrent-DML patterns</span>
+        <span class="chip">Cost optimization · −42% / −36%</span>
+      </div>
+    </div>
+    <div class="panel reveal">
+      <div class="pt">ML &amp; MLOps — applied in projects</div>
+      <div class="chips">
+        <span class="chip key">PyTorch</span>
+        <span class="chip key">MLflow — tracking + Model Registry</span>
+        <span class="chip key">TensorBoard</span>
+        <span class="chip key">Pandera data validation</span>
+        <span class="chip">FastAPI + Docker model serving</span>
+        <span class="chip">U-Net (segmentation-style regression)</span>
+        <span class="chip">LSTM-Autoencoder (time-series anomaly)</span>
+        <span class="chip">ResNet-18 built from scratch</span>
+        <span class="chip">scikit-learn</span>
+        <span class="chip">WeightedRandomSampler imbalance handling</span>
+        <span class="chip">Reproducible configs + seeds</span>
+      </div>
+    </div>
+    <div class="panel reveal">
+      <div class="pt">Deepening now — honestly flagged</div>
+      <div class="chips">
+        <span class="chip dash">Kafka / Flink streaming</span>
+        <span class="chip dash">Spark standalone/local (already run PySpark on Dataproc in prod)</span>
+        <span class="chip dash">Kubernetes</span>
+        <span class="chip dash">IDS / anomaly-detection theory</span>
+        <span class="chip dash">中文 · TOCFL Band A (Dec 2026)</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="experience">
+    <div class="sec-eye reveal">// experience</div>
+    <h2 class="sec-h reveal">Track record &amp; Taiwan link</h2>
+    <div class="tl reveal">
+      <div class="tl-item">
+        <div class="role">Data Engineer — Semrush</div>
+        <div class="when">Sep 2024 — Present</div>
+        <div class="d">Primary developer of a large-scale web-crawl pipeline on GCP, owned end-to-end: <strong>Terraform IaC</strong> (multi-module, prod/staging), Dataproc PySpark ETL, Cloud Functions, and GCP Workflows orchestration feeding a partitioned BigQuery model over landing → staging → production Parquet tiers. Own reliability and observability — shared retry logic, concurrent-DML handling, staging-table MERGE patterns, StatsD/Prometheus metrics, <strong>SLI/SLO-as-code</strong>, failed-workflow alerting, BigQuery audit tables, and schema governance (managed → external tables).</div>
+      </div>
+      <div class="tl-item">
+        <div class="role">Data Engineer — RYTE Technology Services</div>
+        <div class="when">2022 — 2024 · Ho Chi Minh City, Vietnam</div>
+        <div class="d">Designed a serverless <strong>AWS</strong> batch platform: Step Functions over Lambda — with Glue as the automatic fallback past Lambda memory limits — over Parquet on S3 queried through Athena, EventBridge chaining the state machines, a DynamoDB audit table, and <strong>Apache Iceberg</strong> for transactional serving; all infrastructure in <strong>AWS CDK (TypeScript)</strong>. Built and migrated the company&#39;s central data lake (~5 GB/day) onto it — ingestion cost <strong>−42%</strong>, storage cost <strong>−36%</strong>.</div>
+      </div>
+      <div class="tl-item moe">
+        <div class="role">Research Intern — National Chung Cheng University (Taiwan)</div>
+        <div class="when">2020 · <span class="tag">MOE Scholarship</span></div>
+        <div class="d">AI for in-hospital elderly-patient monitoring — 3D human-pose estimation with a customized loss. Fully funded by a Taiwan Ministry of Education scholarship.</div>
+      </div>
+      <div class="tl-item">
+        <div class="role">Research Intern — MICA Institute, HUST</div>
+        <div class="when">2019 — 2021 · Hanoi, Vietnam</div>
+        <div class="d">Visual BMI estimation from facial images; proposed a residual regression model reducing validation MAE 22.5% (2.76 → 2.14). Built two custom datasets via scraping + Pandas. Published at ATC'21 (see below).</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="projects">
+    <div class="sec-eye reveal">// projects</div>
+    <h2 class="sec-h reveal">Selected projects</h2>
+
+    <article class="card reveal">
+      <div class="top">
+        <div class="nm">WM-811K Wafer Defect Detection Pipeline</div>
+        <div class="badges"><span class="badge b-semi">Semiconductor</span><span class="badge b-de">Data Eng</span><span class="badge b-done">Complete</span></div>
+      </div>
+      <div class="desc">A DE-first MLOps pipeline classifying wafer-map defect patterns from WM-811K, structured around the CRISP-ML(Q) lifecycle. Medallion (Bronze/Silver/Gold) Parquet data layer with Pandera validation and pytest + GitHub Actions CI; reproducible preprocessing (stratified 70/15/15, nearest-neighbor 64×64 resize preserving discrete die values); ResNet-18 with a CIFAR-style stem, trained from scratch, plus domain-safe augmentation (90° rotations / flips only — pixel-permutation-safe). Served via FastAPI + Docker: /predict with optional Grad-CAM heatmap, request validation reusing the same wafer-grid gate as the data pipeline ("one rule set, two doors"), and the promoted checkpoint pulled from a GitHub Release with SHA-256 verification at build time — the MLflow registry stays host-side as the manual promotion gate. Evaluated with macro-F1 + per-class metrics on a natural-distribution test set — accuracy would be misleading here.</div>
+      <div class="metric"><span>macro-F1 <b>0.828</b> (baseline CNN) → <b>0.880</b> (ResNet-18 scratch) → <b>0.920</b> (+ domain-safe aug)</span><span>Accuracy <b>0.942</b> · CLI retrain reproduces the notebook within <b>±0.01</b> (0.915 vs 0.920)</span></div>
+      <div class="tech"><span>Python 3.12</span><span>PyTorch (CUDA)</span><span>MLflow Model Registry</span><span>Pandera</span><span>Parquet / PyArrow</span><span>FastAPI</span><span>Docker</span><span>GitHub Actions CI</span><span>uv</span></div>
+      <div class="links"><a href="https://github.com/pqtrng/wm811k-defect-detection" target="_blank" rel="noopener">→ GitHub</a></div>
+    </article>
+
+    <article class="card reveal">
+      <div class="top">
+        <div class="nm">CPS Anomaly Detection Pipeline</div>
+        <div class="badges"><span class="badge b-semi">Semiconductor</span><span class="badge b-sec">Security</span><span class="badge b-done">Complete</span></div>
+      </div>
+      <div class="desc">A DE-first anomaly-detection pipeline on the <strong>HAI</strong> industrial control-system testbed, built so the evaluation is as defensible as the model. Medallion Bronze → Silver → Gold with Pandera validation and SHA-1 fingerprinting; the feature scaler is fit on train-normal only and the detection threshold on a held-out <em>calibration</em> split, applied unchanged to holdout — the leakage boundary is the design, not an afterthought. An LSTM-autoencoder over 60-step windows is benchmarked against a z-score baseline that turns out to be genuinely hard to beat. Raw window-level metrics are the headline and point-adjust is reported only beside them with its inflation spelled out, because PA-only recall overstates every detector by 20–25 points. Detection latency is framed as an SLI against a 30-second SLO. Targets the PLC/SCADA layer that <strong>SEMI E187 deliberately leaves out of scope</strong>, aligned instead with IEC 62443 for OT monitoring. Batch-first by design — no streaming or real-time claim is made.</div>
+      <div class="metric"><span>LSTM-AE raw <b>P 0.814 / R 0.772 / F1 0.792</b> vs best baseline F1 0.738</span><span>All <b>25/25</b> attacks detected · median latency <b>4 s</b> · <b>88%</b> within the 30 s SLO · false-alarm rate <b>0.43%</b></span></div>
+      <div class="tech"><span>Python 3.12</span><span>PyTorch</span><span>TensorBoard</span><span>Pandera</span><span>Parquet</span><span>pytest</span><span>GitHub Actions CI</span><span>uv</span></div>
+      <div class="links"><a href="https://github.com/pqtrng/cps-anomaly-pipeline" target="_blank" rel="noopener">→ GitHub</a></div>
+    </article>
+
+    <article class="card reveal">
+      <div class="top">
+        <div class="nm">CircuitNet Routing-Congestion Prediction</div>
+        <div class="badges"><span class="badge b-semi">Semiconductor</span><span class="badge b-ml">ML</span><span class="badge b-wip">Audited · v1</span></div>
+      </div>
+      <div class="desc">Predicting global-routing congestion from placement-stage feature maps on <strong>CircuitNet-N14</strong>, with a U-Net over 128×128 patches. The contribution is the data rigor: SHA-1 fingerprinting at the Silver layer showed <strong>60% of the dataset is bit-identical duplicates</strong> — PnR sweep parameters appear in filenames but do not alter the feature maps — so the honest sample count is 4,216, not 10,606, and no duplicate group crosses a design boundary, which keeps the design-wise split leak-free. Chips are cropped at native resolution rather than resized, because congestion is a density on a physical routing grid and rescaling would confound domain shift with resolution loss. Figures at audit markers in the decision document are inserted from committed probe artefacts by a rendering step; the prose around them is hand-written and gated by a test whose baseline of unverified quantities must stay empty — every error the audit found lived in that hand-written layer, and the git history shows the baseline shrinking as they were closed.</div>
+      <div class="metric stack"><span><b>Headline finding —</b> the checkpoint-selection rule decides the result. In <code>unet_a</code> the lowest-error and highest-F1 epochs land <b>36 epochs</b> apart and differ <b>15.9×</b> in hotspot F1; across five recorded runs the two rules never agree (<b>1.5×–44.3×</b>).</span><span><b>Why pixel metrics lie here —</b> ground truth is <b>1.601%</b> non-zero, so an all-zero predictor scores near-perfectly while detecting <b>zero</b> hotspots. Every error figure is reported as a ratio to its own split&#39;s baseline.</span><span><b>Reproducibility —</b> <b>140 tests</b>, all passing from a clean clone with no dataset required; CI green (ruff + pytest), pre-commit and pre-push run the same checks; weights published as release <code>model-v1</code> with digests verifiable via <code>sha256sum -c SHA256SUMS</code>.</span></div>
+      <div class="tech"><span>Python 3.12</span><span>PyTorch</span><span>U-Net</span><span>TensorBoard</span><span>Parquet</span><span>pytest</span><span>GitHub Actions CI</span><span>uv</span></div>
+      <div class="links"><a href="https://github.com/pqtrng/circuitnet-congestion" target="_blank" rel="noopener">→ GitHub</a><a href="https://github.com/pqtrng/circuitnet-congestion#readme" target="_blank" rel="noopener">→ Full audit &amp; numbers</a></div>
+    </article>
+
+    <article class="card reveal">
+      <div class="top">
+        <div class="nm">F2B — Face-to-BMI estimation</div>
+        <div class="badges"><span class="badge b-ml">ML</span><span class="badge b-done">Complete</span></div>
+      </div>
+      <div class="desc">Reference implementation for the ATC'21 publication: ResNet-50 facial feature extraction feeding a residual regression head to estimate BMI from face images, trained on the VIP_Attributes dataset with Albumentations-based augmentation and a Dockerized training/eval pipeline.</div>
+      <div class="tech"><span>TensorFlow / Keras</span><span>Dlib</span><span>OpenCV</span><span>Albumentations</span><span>Docker</span></div>
+      <div class="links"><a href="https://github.com/pqtrng/f2b" target="_blank" rel="noopener">→ GitHub</a></div>
+    </article>
+  </section>
+
+  <section class="sec" id="research">
+    <div class="sec-eye reveal">// research_direction</div>
+    <h2 class="sec-h reveal">Where I want to contribute</h2>
+    <div class="prose reveal">
+      My contribution is engineering-led: treat the ML model as one stage inside a maintainable <strong>ingest → preprocess → train/detect → serve</strong> pipeline — with reproducible preprocessing, columnar storage, experiment tracking, observability, and explainability built in from the start.
+      <br><br>
+      In <strong>semiconductor manufacturing</strong>, that means the data-pipeline discipline behind reliable yield analysis at fab scale: wafer-defect recognition, equipment-health monitoring, AI-assisted design.
+      <br><br>
+      In <strong>cyber-physical security</strong> — the bridge — that means multi-stage anomaly detection on industrial telemetry at the PLC/SCADA layer that SEMI E187 deliberately excludes, aligned with IEC 62443. The intersection of manufacturing data and data-driven threat detection is exactly where my data-engineering background and semiconductor interest meet — a place few candidates can credibly stand.
+    </div>
+  </section>
+
+  <section class="sec" id="publication">
+    <div class="sec-eye reveal">// publication</div>
+    <h2 class="sec-h reveal">Peer-reviewed publication</h2>
+    <div class="pub reveal">
+      <div class="venue">ATC 2021 · Int'l Conf. on Advanced Technologies for Communications</div>
+      <div class="ti">BMI Estimation from Facial Images Using a Residual Regression Model</div>
+      <div class="au"><u>Quoc-Trung Pham</u>, Anh-Tuan Luu, Thanh-Hai Tran</div>
+      <div class="ab">A residual regression approach to visual body-mass-index estimation, reducing validation MAE by 22.5% (2.76 → 2.14). Built on two custom datasets assembled through scraping and Pandas-based curation.</div>
+    </div>
+  </section>
+
+  <section class="sec" id="honors">
+    <div class="sec-eye reveal">// honors</div>
+    <h2 class="sec-h reveal">Honors &amp; scholarships</h2>
+    <div class="honors reveal">
+      <div class="honor">
+        <div class="yr">2020</div>
+        <div class="ht">Taiwan MOE Research Scholarship</div>
+        <div class="hi">Ministry of Education (Taiwan) — fully funded research internship at National Chung Cheng University.</div>
+      </div>
+      <div class="honor">
+        <div class="yr">2016 — 2020</div>
+        <div class="ht">VGU Merit Scholarship</div>
+        <div class="hi">Vietnamese-German University — full merit award, top-ranked student of the cohort, held across the degree.</div>
+      </div>
+      <div class="honor">
+        <div class="yr">2017</div>
+        <div class="ht">DAAD Exchange Scholarship</div>
+        <div class="hi">German government (DAAD) academic exchange award.</div>
+      </div>
+      <div class="honor">
+        <div class="yr">2020</div>
+        <div class="ht">Dr. Hans Messer Scholarship</div>
+        <div class="hi">Frankfurt University of Applied Sciences — merit award named after Dr. Hans Messer, former Hoechst AG chairman.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="contact">
+    <div class="sec-eye reveal">// contact</div>
+    <h2 class="sec-h reveal">Get in touch</h2>
+    <div class="avail reveal"><b>Open to opportunities in Taiwan — industry &amp; research</b> · English (IELTS 6.5) · 中文 (learning — TOCFL A2 target Dec 2026)</div>
+    <div class="cgrid reveal">
+      <div class="ci"><div class="l">Email</div><a href="mailto:pqtrng@outlook.com">pqtrng@outlook.com</a></div>
+      <div class="ci"><div class="l">GitHub</div><a href="https://github.com/pqtrng" target="_blank" rel="noopener">github.com/pqtrng</a></div>
+      <div class="ci"><div class="l">Résumé</div><a href="Trung_Pham_CV.pdf" target="_blank" rel="noopener">Trung_Pham_CV.pdf</a></div>
+      <!-- <div class="ci"><div class="l">LinkedIn</div><a href="https://www.linkedin.com/in/pqtrng" target="_blank" rel="noopener">linkedin.com/in/pqtrng</a></div> -->
+    </div>
+  </section>
+
+</main>
+
+<footer>Trung Pham · Data Engineer → Semiconductor ML/MLOps &amp; CPS Security · 2026</footer>
+
+<script>
+/* ---- theme (persists on GitHub Pages; degrades safely in sandbox) ---- */
+(function(){
+  var saved=null;
+  try{saved=localStorage.getItem('theme');}catch(e){}
+  if(saved==='dark'){document.documentElement.setAttribute('data-theme','dark');}
+  var btn=document.getElementById('themeBtn');
+  if(btn)btn.textContent=(saved==='dark')?'☀️':'🌙';
+})();
+function toggleTheme(){
+  var root=document.documentElement, dark=root.getAttribute('data-theme')==='dark';
+  if(dark){root.removeAttribute('data-theme');}else{root.setAttribute('data-theme','dark');}
+  document.getElementById('themeBtn').textContent=dark?'🌙':'☀️';
+  try{localStorage.setItem('theme',dark?'light':'dark');}catch(e){}
+}
+
+/* ---- wafer bin-map: build a recognizable defect signature + radial reveal ---- */
+(function(){
+  var g=document.getElementById('dies'); if(!g)return;
+  var cx=120, cy=120, r=104, s=9, gap=1.4, cells=[];
+  for(var x=cx-r;x<cx+r;x+=s){
+    for(var y=cy-r;y<cy+r;y+=s){
+      var mx=x+s/2, my=y+s/2, dx=mx-cx, dy=my-cy, d=Math.sqrt(dx*dx+dy*dy);
+      if(d>r) continue;
+      var bin='empty';
+      // Edge-Ring: outer annulus
+      if(d>r*0.80 && d<r*0.97){ if(Math.random()<0.72) bin='edge'; }
+      // Center cluster
+      else if(d<r*0.24){ if(Math.random()<0.85) bin='center'; }
+      // Loc: an off-center pocket (upper-left)
+      else if(dx<-r*0.30 && dx>-r*0.62 && dy<-r*0.05 && dy>-r*0.40){ if(Math.random()<0.7) bin='loc'; }
+      // sparse background noise
+      else if(Math.random()<0.10){ bin='empty2'; }
+      cells.push({x:x,y:y,d:d,bin:bin});
+    }
+  }
+  // Scratch: a diagonal line of dies
+  cells.forEach(function(c){
+    var lx=c.x+s/2-cx, ly=c.y+s/2-cy;
+    if(Math.abs(ly-(-0.7*lx+18))<5 && lx>-10 && lx<70){ c.bin='scratch'; }
+  });
+  var color={center:'var(--bin-center)',edge:'var(--bin-edge)',loc:'var(--bin-loc)',scratch:'var(--bin-scratch)',empty2:'var(--bin-empty)',empty:null};
+  var maxD=r, html='';
+  cells.forEach(function(c){
+    var fill=color[c.bin];
+    if(c.bin==='empty' && Math.random()>0.55) fill='var(--bin-empty)'; // faint grid fill
+    if(!fill) return;
+    var delay=(c.d/maxD)*650 + Math.random()*120;
+    html+='<rect class="die" x="'+c.x.toFixed(1)+'" y="'+c.y.toFixed(1)+'" width="'+(s-gap)+'" height="'+(s-gap)+'" rx="1.2" fill="'+fill+'" style="transition-delay:'+delay.toFixed(0)+'ms"/>';
+  });
+  g.innerHTML=html;
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var w=document.getElementById('wafer');
+  if(reduce){ w.classList.add('live'); }
+  else{ requestAnimationFrame(function(){ setTimeout(function(){ w.classList.add('live'); },120); }); }
+})();
+
+/* ---- scroll reveal ---- */
+(function(){
+  var els=[].slice.call(document.querySelectorAll('.reveal'));
+  if(!('IntersectionObserver' in window)){ els.forEach(function(e){e.classList.add('in');}); return; }
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+  },{threshold:0.12});
+  els.forEach(function(e){io.observe(e);});
+})();
+
+/* ---- scrollspy ---- */
+(function(){
+  var secs=[].slice.call(document.querySelectorAll('main .sec')),
+      links=[].slice.call(document.querySelectorAll('nav a'));
+  function upd(){
+    var p=window.scrollY+140, cur=secs.length?secs[0].id:'';
+    secs.forEach(function(s){ if(s.offsetTop<=p) cur=s.id; });
+    links.forEach(function(l){ l.classList.toggle('active', l.getAttribute('href')==='#'+cur); });
+  }
+  addEventListener('scroll',upd,{passive:true}); upd();
+})();
+</script>
+
+
 </body>
 </html>
