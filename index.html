@@ -4,20 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Trung Pham — Data Engineer · Semiconductor ML &amp; CPS Security</title>
-<meta name="description" content="Trung Pham — Data Engineer (4 yrs production, GCP + AWS). Data infrastructure for ML systems at fab and cyber-physical scale. Taiwan MOE Research Scholar.">
+<meta name="description" content="Trung Pham — Data Engineer (4 yrs production, GCP + AWS). Data infrastructure for ML systems at hardware-validation and cyber-physical scale. MOE TEEP@AsiaPlus placement, CCU 2020.">
 <link rel="canonical" href="https://pqtrng.github.io/">
 
 <!-- link preview (email, LINE, Slack, LinkedIn) -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://pqtrng.github.io/">
 <meta property="og:title" content="Trung Pham — Data Engineer · Semiconductor ML &amp; CPS Security">
-<meta property="og:description" content="4 years production Data Engineering across GCP and AWS. Data infrastructure for ML systems at fab and cyber-physical scale. Taiwan MOE Research Scholar.">
+<meta property="og:description" content="4 years production Data Engineering across GCP and AWS. Data infrastructure for ML systems at hardware-validation and cyber-physical scale. MOE TEEP@AsiaPlus placement, CCU 2020.">
 <meta property="og:image" content="https://pqtrng.github.io/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Trung Pham — Data Engineer · Semiconductor ML &amp; CPS Security">
-<meta name="twitter:description" content="4 years production Data Engineering across GCP and AWS. Data infrastructure for ML systems at fab and cyber-physical scale. Taiwan MOE Research Scholar.">
+<meta name="twitter:description" content="4 years production Data Engineering across GCP and AWS. Data infrastructure for ML systems at hardware-validation and cyber-physical scale. MOE TEEP@AsiaPlus placement, CCU 2020.">
 <meta name="twitter:image" content="https://pqtrng.github.io/og.png">
 
 <!-- inline favicon: wafer notch mark, theme-aware, no extra file needed -->
@@ -28,7 +28,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 
@@ -57,8 +57,14 @@
   --bin-center:#6f96ff; --bin-edge:#e0a955; --bin-loc:#a688ff; --bin-scratch:#ff6f6f; --bin-empty:#1c2740;
 }
 
-html{scroll-behavior:smooth}
-body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden;transition:background .35s,color .35s}
+/* File này KHÔNG nạp intense_theme.css (cố ý — nó là portfolio public, đứng ngoài
+   Hub), nên gốc rem rơi về 16px mặc định trình duyệt. portfolio_website.html là
+   bản song sinh, CSS gần như trùng từng dòng, nhưng có nạp theme nên gốc 17.5px.
+   Hệ quả: cùng một khai báo .88rem cho ra 14.08px ở đây và 15.40px ở bản kia —
+   và bản NHỎ hơn lại chính là bản outbound giáo sư/nhà tuyển dụng đọc.
+   Chép nguyên hai dòng của intense_theme.css để hai bản khớp nhau. */
+html{scroll-behavior:smooth;font-size:17.5px;-webkit-text-size-adjust:100%}
+body{font-family:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.68;letter-spacing:-.003em;-webkit-font-smoothing:antialiased;overflow-x:hidden;transition:background .35s,color .35s}
 a{color:var(--primary);text-decoration:none;transition:color .18s,opacity .18s}
 a:hover{opacity:.72}
 :focus-visible{outline:2px solid var(--primary);outline-offset:3px;border-radius:3px}
@@ -79,7 +85,7 @@ a:hover{opacity:.72}
 .hero-grid{display:grid;grid-template-columns:1fr 300px;gap:3rem;align-items:center}
 @media(max-width:820px){.hero-grid{grid-template-columns:1fr;gap:2.2rem}.hero{padding-top:3.4rem;padding-bottom:2.4rem}}
 .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--primary);margin-bottom:1.3rem}
-.hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.85rem,4.6vw,2.9rem);font-weight:600;line-height:1.14;letter-spacing:-.015em;margin-bottom:1.25rem}
+.hero h1{font-family:'Bricolage Grotesque','Be Vietnam Pro',system-ui,sans-serif;font-size:clamp(1.85rem,4.6vw,2.9rem);font-weight:600;line-height:1.14;letter-spacing:-.015em;margin-bottom:1.25rem}
 .hero h1 em{font-style:normal;color:var(--primary)}
 .hero h1 .amb{color:var(--amber)}
 .lede{font-size:1rem;color:var(--muted);max-width:34em;margin-bottom:1.8rem}
@@ -91,6 +97,10 @@ a:hover{opacity:.72}
 .btn:hover{border-color:var(--primary-line);transform:translateY(-1px);opacity:1}
 .btn.primary{background:var(--primary);border-color:var(--primary);color:#fff}
 .btn.primary:hover{opacity:.9}
+/* Ở dark, --primary sáng lên (#6f96ff) nên chữ trắng chỉ còn 2.81:1 — trượt cả AA
+   (4.5:1) lẫn AA-large (3:1) ở font-size .78rem. Đảo sang chữ nền tối: 6.97:1.
+   Trang này là OUTBOUND — nút CTA chìm là thứ giáo sư/nhà tuyển dụng nhìn thấy. */
+[data-theme="dark"] .btn.primary{color:var(--bg)}
 
 /* ---- wafer signature ---- */
 .wafer{width:100%;max-width:300px;margin:0 auto;position:relative}
@@ -105,7 +115,7 @@ a:hover{opacity:.72}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:2.6rem}
 @media(max-width:600px){.stats{grid-template-columns:repeat(2,1fr)}}
 .stat{background:var(--panel);padding:1rem 1.1rem}
-.stat .v{font-family:'Space Grotesk',sans-serif;font-size:1.5rem;font-weight:600;color:var(--primary);letter-spacing:-.02em}
+.stat .v{font-family:'Bricolage Grotesque','Be Vietnam Pro',system-ui,sans-serif;font-size:1.5rem;font-weight:600;color:var(--primary);letter-spacing:-.02em}
 .stat .l{font-family:'IBM Plex Mono',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-top:.25rem}
 
 /* ---- nav ---- */
@@ -120,8 +130,11 @@ nav a.active{color:var(--primary);background:var(--primary-soft)}
 .sec{padding:3.4rem 0;border-top:1px solid var(--line-soft)}
 .sec:first-of-type{border-top:none}
 .sec-eye{font-family:'IBM Plex Mono',monospace;font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;color:var(--primary);margin-bottom:.55rem}
-.sec-h{font-family:'Space Grotesk',sans-serif;font-size:1.5rem;font-weight:600;letter-spacing:-.01em;margin-bottom:1.5rem}
+.sec-h{font-family:'Bricolage Grotesque','Be Vietnam Pro',system-ui,sans-serif;font-size:1.5rem;font-weight:600;letter-spacing:-.01em;margin-bottom:1.5rem}
 .prose{font-size:.95rem;color:var(--muted)}
+/* Ghim độ dài dòng theo em — văn xuôi ở đây nằm trong <div>, không phải <p>,
+   nên không có trần nào; ở khung rộng dòng chạy 110+ ký tự. 40em ≈ 70 ký tự. */
+.prose,.card .desc,.tl-item .d,.pub .ab{max-width:40em}
 .prose strong{color:var(--text);font-weight:600}
 .prose em{color:var(--text);font-style:italic}
 .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
@@ -150,7 +163,7 @@ nav a.active{color:var(--primary);background:var(--primary-soft)}
 .tl-item:last-child{padding-bottom:0}
 .tl-item::before{content:'';position:absolute;left:-1.6rem;top:7px;width:11px;height:11px;border-radius:3px;background:var(--panel);border:2px solid var(--primary);box-shadow:0 0 0 4px var(--bg)}
 .tl-item.moe::before{border-color:var(--amber)}
-.tl-item .role{font-family:'Space Grotesk',sans-serif;font-size:.98rem;font-weight:600;color:var(--text)}
+.tl-item .role{font-family:'Bricolage Grotesque','Be Vietnam Pro',system-ui,sans-serif;font-size:.98rem;font-weight:600;color:var(--text)}
 .tl-item .when{font-family:'IBM Plex Mono',monospace;font-size:.68rem;color:var(--faint);margin:.25rem 0 .5rem;letter-spacing:.02em}
 .tl-item .when .tag{color:var(--amber)}
 .tl-item .d{font-size:.88rem;color:var(--muted)}
@@ -159,7 +172,7 @@ nav a.active{color:var(--primary);background:var(--primary-soft)}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:1.5rem;margin-bottom:1.1rem;box-shadow:var(--shadow);transition:border-color .25s,transform .25s}
 .card:hover{border-color:var(--primary-line);transform:translateY(-2px)}
 .card .top{display:flex;justify-content:space-between;align-items:flex-start;gap:.8rem;flex-wrap:wrap;margin-bottom:.85rem}
-.card .nm{font-family:'Space Grotesk',sans-serif;font-size:1.08rem;font-weight:600;letter-spacing:-.01em}
+.card .nm{font-family:'Bricolage Grotesque','Be Vietnam Pro',system-ui,sans-serif;font-size:1.08rem;font-weight:600;letter-spacing:-.01em}
 .badges{display:flex;gap:.4rem;flex-wrap:wrap}
 .badge{font-family:'IBM Plex Mono',monospace;font-size:.6rem;padding:.24rem .55rem;border-radius:6px;text-transform:uppercase;letter-spacing:.08em;white-space:nowrap;border:1px solid transparent}
 .b-semi{background:var(--amber-soft);color:var(--amber);border-color:var(--amber-soft)}
@@ -181,10 +194,10 @@ nav a.active{color:var(--primary);background:var(--primary-soft)}
 /* ---- publication ---- */
 .pub{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--violet);border-radius:0 12px 12px 0;padding:1.2rem 1.4rem;box-shadow:var(--shadow)}
 .pub .venue{font-family:'IBM Plex Mono',monospace;font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--violet);margin-bottom:.5rem}
-.pub .ti{font-family:'Space Grotesk',sans-serif;font-size:.98rem;font-weight:600;margin-bottom:.35rem}
-.pub .au{font-size:.82rem;color:var(--muted)}
+.pub .ti{font-family:'Bricolage Grotesque','Be Vietnam Pro',system-ui,sans-serif;font-size:.98rem;font-weight:600;margin-bottom:.35rem}
+.pub .au{font-size:.9rem;color:var(--muted)}
 .pub .au u{text-decoration:underline;text-underline-offset:2px;color:var(--text)}
-.pub .ab{font-size:.85rem;color:var(--muted);margin-top:.6rem}
+.pub .ab{font-size:.9rem;color:var(--muted);margin-top:.6rem;max-width:68ch}
 
 /* ---- honors ---- */
 .honors{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:.4rem}
@@ -192,8 +205,8 @@ nav a.active{color:var(--primary);background:var(--primary-soft)}
 .honor{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--amber);border-radius:0 12px 12px 0;padding:1.1rem 1.25rem;box-shadow:var(--shadow);transition:border-color .2s,transform .2s}
 .honor:hover{transform:translateY(-2px)}
 .honor .yr{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.14em;color:var(--amber);margin-bottom:.4rem}
-.honor .ht{font-family:'Space Grotesk',sans-serif;font-size:.98rem;font-weight:600;letter-spacing:-.01em;margin-bottom:.35rem}
-.honor .hi{font-size:.82rem;color:var(--muted)}
+.honor .ht{font-family:'Bricolage Grotesque','Be Vietnam Pro',system-ui,sans-serif;font-size:.98rem;font-weight:600;letter-spacing:-.01em;margin-bottom:.35rem}
+.honor .hi{font-size:.9rem;color:var(--muted)}
 
 /* ---- contact ---- */
 .avail{font-family:'IBM Plex Mono',monospace;font-size:.8rem;color:var(--muted);margin-bottom:1.2rem}
@@ -206,6 +219,11 @@ nav a.active{color:var(--primary);background:var(--primary-soft)}
 .ci a{font-family:'IBM Plex Mono',monospace;font-size:.82rem}
 
 footer{text-align:center;padding:2.6rem 1rem;color:var(--faint);font-size:.7rem;border-top:1px solid var(--line);font-family:'IBM Plex Mono',monospace;letter-spacing:.04em}
+
+/* Khớp intense_theme.css: hạ một bậc ở màn nhỏ. Thiếu dòng này thì đây là trang
+   DUY NHẤT của bộ không hạ cỡ trên điện thoại — mà nó lại đúng là trang public
+   (có rel=canonical), nơi lưu lượng mobile đổ vào. */
+@media(max-width:640px){html{font-size:16.5px}}
 
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -224,11 +242,11 @@ footer{text-align:center;padding:2.6rem 1rem;color:var(--faint);font-size:.7rem;
     <div>
       <div class="eyebrow">Data Engineer · Semiconductor ML &amp; CPS Security</div>
       <h1>I build the <em>data infrastructure</em> behind <span class="amb">wafer-yield</span> ML and cyber-physical <em>security</em>.</h1>
-      <p class="lede">Data Engineer with 4 years of production experience across <strong>GCP and AWS</strong> — where cost, reliability and observability are measured rather than asserted. I turn inspection, sensor and telemetry data into reliable, reproducible ML signal at fab and industrial scale.</p>
+      <p class="lede">Data Engineer with 4 years of production experience across <strong>GCP and AWS</strong> — where cost, reliability and observability are measured rather than asserted. I turn inspection, sensor and telemetry data into reliable, reproducible ML signal at hardware-validation and industrial scale.</p>
       <div class="readout">
         <span><b>STATUS</b> <span class="dot">▸</span> open to Taiwan — industry &amp; research</span>
         <span><b>STACK</b> <span class="dot">▸</span> GCP + AWS · PySpark · Terraform · PyTorch</span>
-        <span><b>LINK</b> <span class="dot">▸</span> Taiwan MOE Scholar</span>
+        <span><b>LINK</b> <span class="dot">▸</span> TEEP@AsiaPlus placement</span>
       </div>
       <div class="cta-row">
         <a class="btn primary" href="#projects">View projects</a>
@@ -260,7 +278,7 @@ footer{text-align:center;padding:2.6rem 1rem;color:var(--faint);font-size:.7rem;
   <div class="stats">
     <div class="stat"><div class="v">4 yrs</div><div class="l">Production DE</div></div>
     <div class="stat"><div class="v">−42%</div><div class="l">Ingestion cost</div></div>
-    <div class="stat"><div class="v">MOE</div><div class="l">Taiwan Scholar</div></div>
+    <div class="stat"><div class="v">MOE</div><div class="l">TEEP placement</div></div>
     <div class="stat"><div class="v">ATC'21</div><div class="l">Publication</div></div>
   </div>
 </header>
@@ -281,19 +299,19 @@ footer{text-align:center;padding:2.6rem 1rem;color:var(--faint);font-size:.7rem;
 
   <section class="sec" id="about">
     <div class="sec-eye reveal">// about</div>
-    <h2 class="sec-h reveal">A DE-first engineer for ML infrastructure — in fabs and in security</h2>
+    <h2 class="sec-h reveal">A DE-first engineer for ML infrastructure — in hardware validation and in security</h2>
     <div class="prose reveal">
       I am a <strong>Data Engineer with 4 years of production experience</strong> building reliable, observable and cost-efficient data pipelines across <strong>GCP and AWS</strong> — ETL/ELT systems, data-lake design and migration, infrastructure as code, and the observability that keeps them honest. I began with a BA in Business Administration (International Business) from <strong>Foreign Trade University</strong> (Vietnam), then moved into engineering with a <strong>Computer Science degree from Vietnamese-German University (VGU), in dual-degree partnership with Frankfurt University of Applied Sciences</strong> (Germany · GPA 1.6 ≈ 8.6/10).
       <br><br>
-      My link to Taiwan is concrete. In 2020 I was a <strong>Ministry of Education (MOE) Research Scholarship recipient at National Chung Cheng University (CCU)</strong>, working on AI for in-hospital elderly-patient monitoring. I am now working toward a longer-term move into Taiwan&#39;s semiconductor ecosystem — in industry or in a research group where the data layer is the bottleneck.
+      My link to Taiwan is concrete. In 2020 I spent fourteen weeks &mdash; extended to about six months by the pandemic &mdash; at <strong>National Chung Cheng University (CCU)</strong> on <strong>TEEP@AsiaPlus</strong>, a Ministry of Education placement programme, working on loss-function design for 3D human skeleton estimation. I am now working toward a longer-term move into Taiwan&#39;s semiconductor ecosystem — in industry or in a research group where the data layer is the bottleneck.
       <br><br>
-      My <em>value-add is the same across both directions I care about</em>: making ML maintainable, reproducible, and operable at scale inside a real data backbone. A fab and a cyber-physical system share one engineering problem — high-volume inspection / sensor / telemetry data that must be ingested, normalized, and turned into a reliable signal. I build that <strong>ingest → process → detect → serve</strong> pipeline.
+      My <em>value-add is the same across both directions I care about</em>: making ML maintainable, reproducible, and operable at scale inside a real data backbone. Large-scale hardware validation and a cyber-physical system share one engineering problem — high-volume inspection / sensor / telemetry data that must be ingested, normalized, and turned into a reliable signal. I build that <strong>ingest → process → detect → serve</strong> pipeline.
     </div>
 
     <div class="tracks reveal">
       <div class="track a">
         <div class="tt">▸ track_A — semiconductor ML / MLOps</div>
-        <div class="tp">Wafer-defect recognition, equipment-health monitoring, AI-assisted EDA — the data-pipeline discipline behind fab yield analysis.</div>
+        <div class="tp">Wafer-defect recognition, equipment-health monitoring, AI-assisted EDA — the data-pipeline discipline behind high-volume hardware test and validation.</div>
       </div>
       <div class="track b">
         <div class="tt">▸ track_B — cyber-physical security</div>
@@ -362,7 +380,7 @@ footer{text-align:center;padding:2.6rem 1rem;color:var(--faint);font-size:.7rem;
         <span class="chip dash">Spark standalone/local (already run PySpark on Dataproc in prod)</span>
         <span class="chip dash">Kubernetes</span>
         <span class="chip dash">IDS / anomaly-detection theory</span>
-        <span class="chip dash">中文 · TOCFL A2 (Dec 2026)</span>
+        <span class="chip dash">中文 · TOCFL Band A (Novice) (Dec 2026)</span>
       </div>
     </div>
   </section>
@@ -383,8 +401,8 @@ footer{text-align:center;padding:2.6rem 1rem;color:var(--faint);font-size:.7rem;
       </div>
       <div class="tl-item moe">
         <div class="role">Research Intern — National Chung Cheng University (Taiwan)</div>
-        <div class="when">2020 · <span class="tag">MOE Scholarship</span></div>
-        <div class="d">AI for in-hospital elderly-patient monitoring — 3D human-pose estimation with a customized loss. Fully funded by a Taiwan Ministry of Education scholarship.</div>
+        <div class="when">2020 · <span class="tag">TEEP@AsiaPlus</span></div>
+        <div class="d">Loss-function design for 3D human skeleton estimation &mdash; weighted-joint objectives evaluated by MPJPE on H3.6M. Multimedia Engineering Laboratory, Dept of Electrical Engineering. MOE-approved placement under TEEP@AsiaPlus, hosted by CCU's College of Engineering.</div>
       </div>
       <div class="tl-item">
         <div class="role">Research Intern — MICA Institute, HUST</div>
@@ -426,7 +444,7 @@ footer{text-align:center;padding:2.6rem 1rem;color:var(--faint);font-size:.7rem;
         <div class="badges"><span class="badge b-semi">Semiconductor</span><span class="badge b-ml">ML</span><span class="badge b-wip">Audited · v1</span></div>
       </div>
       <div class="desc">Predicting global-routing congestion from placement-stage feature maps on <strong>CircuitNet-N14</strong>, with a U-Net over 128×128 patches. The contribution is the data rigor: SHA-1 fingerprinting at the Silver layer showed <strong>60% of the dataset is bit-identical duplicates</strong> — PnR sweep parameters appear in filenames but do not alter the feature maps — so the honest sample count is 4,216, not 10,606, and no duplicate group crosses a design boundary, which keeps the design-wise split leak-free. Chips are cropped at native resolution rather than resized, because congestion is a density on a physical routing grid and rescaling would confound domain shift with resolution loss. Figures at audit markers in the decision document are inserted from committed probe artefacts by a rendering step; the prose around them is hand-written and gated by a test whose baseline of unverified quantities must stay empty — every error the audit found lived in that hand-written layer, and the git history shows the baseline shrinking as they were closed.</div>
-      <div class="metric stack"><span><b>Headline finding —</b> the checkpoint-selection rule decides the result. In <code>unet_a</code> the lowest-error and highest-F1 epochs land <b>36 epochs</b> apart and differ <b>15.9×</b> in hotspot F1 (0.0022 → 0.0356 — low in absolute terms; the result is the shape of the disagreement, not the height of the bars); across five recorded runs the two rules never agree — <b>1.5×–44.3×</b> over four of them, with the fifth unbounded (its error-selected epoch scored F1 = 0).</span><span><b>Why pixel metrics lie here —</b> on the training split ground truth is <b>1.601%</b> non-zero (val 0.955%, test 5.575%), so where the target is sparsest an all-zero predictor scores near-perfectly while detecting <b>zero</b> hotspots — a function of sparsity, not a constant of the task. Every error figure is reported as a ratio to its own split&#39;s baseline.</span><span><b>Reproducibility —</b> <b>140 tests</b>, all passing from a clean clone with no dataset required; CI green (ruff + pytest), pre-commit and pre-push run the same checks; weights published as release <code>model-v1</code> with digests verifiable via <code>sha256sum -c SHA256SUMS</code>.</span></div>
+      <div class="metric stack"><span><b>Headline finding —</b> the checkpoint-selection rule decides the result. In <code>unet_a</code> the lowest-error and highest-F1 epochs land <b>36 epochs</b> apart and differ <b>15.9×</b> in hotspot F1 (0.0022 → 0.0356 — low in absolute terms; the result is the shape of the disagreement, not the height of the bars); across five recorded runs the two rules never agree — <b>1.5×–44.3×</b> over four of them, with the fifth unbounded (its error-selected epoch scored F1 = 0).</span><span><b>Why pixel metrics lie here —</b> on the training split ground truth is <b>1.601%</b> non-zero (val 0.955%, test 5.575%), so where the target is sparsest an all-zero predictor scores near-perfectly while detecting <b>zero</b> hotspots — a function of sparsity, not a constant of the task. Every error figure is reported as a ratio to its own split&#39;s baseline.</span><span><b>Reproducibility —</b> full test suite passing from a clean clone with no dataset required; CI green (ruff + pytest), pre-commit and pre-push run the same checks; weights published as release <code>model-v1</code> with digests verifiable via <code>sha256sum -c SHA256SUMS</code>.</span></div>
       <div class="tech"><span>Python 3.12</span><span>PyTorch</span><span>U-Net</span><span>TensorBoard</span><span>Parquet</span><span>pytest</span><span>GitHub Actions CI</span><span>uv</span></div>
       <div class="links"><a href="https://github.com/pqtrng/circuitnet-congestion" target="_blank" rel="noopener">→ GitHub</a><a href="https://github.com/pqtrng/circuitnet-congestion#readme" target="_blank" rel="noopener">→ Full audit &amp; numbers</a></div>
     </article>
@@ -448,7 +466,7 @@ footer{text-align:center;padding:2.6rem 1rem;color:var(--faint);font-size:.7rem;
     <div class="prose reveal">
       My contribution is engineering-led: treat the ML model as one stage inside a maintainable <strong>ingest → preprocess → train/detect → serve</strong> pipeline — with reproducible preprocessing, columnar storage, experiment tracking, observability, and explainability built in from the start.
       <br><br>
-      In <strong>semiconductor manufacturing</strong>, that means the data-pipeline discipline behind reliable yield analysis at fab scale: wafer-defect recognition, equipment-health monitoring, AI-assisted design.
+      In <strong>semiconductor manufacturing</strong>, that means the data-pipeline discipline behind reliable test-and-validation analysis at hardware scale: wafer-defect recognition, equipment-health monitoring, AI-assisted design.
       <br><br>
       In <strong>cyber-physical security</strong> — the bridge — that means multi-stage anomaly detection on industrial telemetry at the PLC/SCADA layer that SEMI E187 deliberately excludes, aligned with IEC 62443. The intersection of manufacturing data and data-driven threat detection is exactly where my data-engineering background and semiconductor interest meet — a place few candidates can credibly stand.
     </div>
@@ -471,11 +489,11 @@ footer{text-align:center;padding:2.6rem 1rem;color:var(--faint);font-size:.7rem;
     <div class="honors reveal">
       <div class="honor">
         <div class="yr">2020</div>
-        <div class="ht">Taiwan MOE Research Scholarship</div>
-        <div class="hi">Ministry of Education (Taiwan) — fully funded research internship at National Chung Cheng University.</div>
+        <div class="ht">MOE TEEP@AsiaPlus, National Chung Cheng University</div>
+        <div class="hi">MOE-approved TEEP@AsiaPlus placement, hosted by National Chung Cheng University's College of Engineering.</div>
       </div>
       <div class="honor">
-        <div class="yr">2016 — 2020</div>
+        <div class="yr">2015 — 2021</div>
         <div class="ht">VGU Merit Scholarship</div>
         <div class="hi">Vietnamese-German University — full merit award, top-ranked student of the cohort, held across the degree.</div>
       </div>
@@ -495,7 +513,7 @@ footer{text-align:center;padding:2.6rem 1rem;color:var(--faint);font-size:.7rem;
   <section class="sec" id="contact">
     <div class="sec-eye reveal">// contact</div>
     <h2 class="sec-h reveal">Get in touch</h2>
-    <div class="avail reveal"><b>Open to opportunities in Taiwan — industry &amp; research</b> · Vietnamese (native) · English (IELTS 6.5) · 中文 (learning — TOCFL A2 target Dec 2026)</div>
+    <div class="avail reveal"><b>Open to opportunities in Taiwan — industry &amp; research</b> · Vietnamese (native) · English (IELTS 6.5) · 中文 (learning — TOCFL Band A (Novice) target Dec 2026)</div>
     <div class="cgrid reveal">
       <div class="ci"><div class="l">Email</div><a href="mailto:pqtrng@outlook.com">pqtrng@outlook.com</a></div>
       <div class="ci"><div class="l">GitHub</div><a href="https://github.com/pqtrng" target="_blank" rel="noopener">github.com/pqtrng</a></div>
