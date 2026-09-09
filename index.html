@@ -82,7 +82,7 @@ a:hover{opacity:.72}
 
 /* ---- hero ---- */
 .hero{padding-top:5.5rem;padding-bottom:3.2rem;position:relative}
-.hero-grid{display:grid;grid-template-columns:1fr 300px;gap:3rem;align-items:center}
+.hero-grid{display:grid;grid-template-columns:1fr 260px;gap:3rem;align-items:center}
 @media(max-width:820px){.hero-grid{grid-template-columns:1fr;gap:2.2rem}.hero{padding-top:3.4rem;padding-bottom:2.4rem}}
 .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--primary);margin-bottom:1.3rem}
 .hero h1{font-family:'Bricolage Grotesque','Be Vietnam Pro',system-ui,sans-serif;font-size:clamp(1.85rem,4.6vw,2.9rem);font-weight:600;line-height:1.14;letter-spacing:-.015em;margin-bottom:1.25rem}
@@ -92,8 +92,8 @@ a:hover{opacity:.72}
 .readout{font-family:'IBM Plex Mono',monospace;font-size:.68rem;color:var(--faint);letter-spacing:.02em;display:flex;flex-wrap:wrap;gap:.35rem 1.1rem;margin-bottom:2rem}
 .readout b{color:var(--muted);font-weight:500}
 .readout .dot{color:var(--primary)}
-.cta-row{display:flex;flex-wrap:wrap;gap:.7rem}
-.btn{font-family:'IBM Plex Mono',monospace;font-size:.78rem;padding:.62rem 1.15rem;border-radius:9px;border:1px solid var(--line);background:var(--panel);color:var(--text);display:inline-flex;align-items:center;gap:.5rem;transition:border-color .2s,transform .2s,background .2s}
+.cta-row{display:flex;flex-wrap:wrap;gap:.5rem}
+.btn{font-family:'IBM Plex Mono',monospace;font-size:.78rem;padding:.62rem .95rem;border-radius:9px;border:1px solid var(--line);background:var(--panel);color:var(--text);display:inline-flex;align-items:center;gap:.5rem;transition:border-color .2s,transform .2s,background .2s}
 .btn:hover{border-color:var(--primary-line);transform:translateY(-1px);opacity:1}
 .btn.primary{background:var(--primary);border-color:var(--primary);color:#fff}
 .btn.primary:hover{opacity:.9}
@@ -134,7 +134,7 @@ nav a.active{color:var(--primary);background:var(--primary-soft)}
 .prose{font-size:.95rem;color:var(--muted)}
 /* Ghim độ dài dòng theo em — văn xuôi ở đây nằm trong <div>, không phải <p>,
    nên không có trần nào; ở khung rộng dòng chạy 110+ ký tự. 40em ≈ 70 ký tự. */
-.prose,.card .desc,.tl-item .d,.pub .ab{max-width:40em}
+.prose,.tl-item .d{max-width:40em}
 .prose strong{color:var(--text);font-weight:600}
 .prose em{color:var(--text);font-style:italic}
 .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
