@@ -28,7 +28,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 
@@ -85,7 +85,7 @@ a:hover{opacity:.72}
 .hero-grid{display:grid;grid-template-columns:1fr 260px;gap:3rem;align-items:center}
 @media(max-width:820px){.hero-grid{grid-template-columns:1fr;gap:2.2rem}.hero{padding-top:3.4rem;padding-bottom:2.4rem}}
 .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--primary);margin-bottom:1.3rem}
-.hero h1{font-family:'Bricolage Grotesque','Be Vietnam Pro',system-ui,sans-serif;font-size:clamp(1.85rem,4.6vw,2.9rem);font-weight:600;line-height:1.14;letter-spacing:-.015em;margin-bottom:1.25rem}
+.hero h1{font-family:'IBM Plex Sans','Be Vietnam Pro',system-ui,sans-serif;font-size:clamp(1.85rem,4.6vw,2.9rem);font-weight:600;line-height:1.14;letter-spacing:-.015em;margin-bottom:1.25rem}
 .hero h1 em{font-style:normal;color:var(--primary)}
 .hero h1 .amb{color:var(--amber)}
 .lede{font-size:1rem;color:var(--muted);max-width:34em;margin-bottom:1.8rem}
@@ -115,7 +115,7 @@ a:hover{opacity:.72}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:2.6rem}
 @media(max-width:600px){.stats{grid-template-columns:repeat(2,1fr)}}
 .stat{background:var(--panel);padding:1rem 1.1rem}
-.stat .v{font-family:'Bricolage Grotesque','Be Vietnam Pro',system-ui,sans-serif;font-size:1.5rem;font-weight:600;color:var(--primary);letter-spacing:-.02em}
+.stat .v{font-family:'IBM Plex Sans','Be Vietnam Pro',system-ui,sans-serif;font-size:1.5rem;font-weight:600;color:var(--primary);letter-spacing:-.02em}
 .stat .l{font-family:'IBM Plex Mono',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-top:.25rem}
 
 /* ---- nav ---- */
@@ -130,7 +130,7 @@ nav a.active{color:var(--primary);background:var(--primary-soft)}
 .sec{padding:3.4rem 0;border-top:1px solid var(--line-soft)}
 .sec:first-of-type{border-top:none}
 .sec-eye{font-family:'IBM Plex Mono',monospace;font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;color:var(--primary);margin-bottom:.55rem}
-.sec-h{font-family:'Bricolage Grotesque','Be Vietnam Pro',system-ui,sans-serif;font-size:1.5rem;font-weight:600;letter-spacing:-.01em;margin-bottom:1.5rem}
+.sec-h{font-family:'IBM Plex Sans','Be Vietnam Pro',system-ui,sans-serif;font-size:1.5rem;font-weight:600;letter-spacing:-.01em;margin-bottom:1.5rem}
 .prose{font-size:.95rem;color:var(--muted)}
 /* Ghim độ dài dòng theo em — văn xuôi ở đây nằm trong <div>, không phải <p>,
    nên không có trần nào; ở khung rộng dòng chạy 110+ ký tự. 40em ≈ 70 ký tự. */
@@ -162,7 +162,7 @@ nav a.active{color:var(--primary);background:var(--primary-soft)}
 .tl-item:last-child{padding-bottom:0}
 .tl-item::before{content:'';position:absolute;left:-1.6rem;top:7px;width:11px;height:11px;border-radius:3px;background:var(--panel);border:2px solid var(--primary);box-shadow:0 0 0 4px var(--bg)}
 .tl-item.moe::before{border-color:var(--amber)}
-.tl-item .role{font-family:'Bricolage Grotesque','Be Vietnam Pro',system-ui,sans-serif;font-size:.98rem;font-weight:600;color:var(--text)}
+.tl-item .role{font-family:'IBM Plex Sans','Be Vietnam Pro',system-ui,sans-serif;font-size:.98rem;font-weight:600;color:var(--text)}
 .tl-item .when{font-family:'IBM Plex Mono',monospace;font-size:.68rem;color:var(--faint);margin:.25rem 0 .5rem;letter-spacing:.02em}
 .tl-item .when .tag{color:var(--amber)}
 .tl-item .d{font-size:.95rem;color:var(--muted)}
@@ -171,7 +171,7 @@ nav a.active{color:var(--primary);background:var(--primary-soft)}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:1.5rem;margin-bottom:1.1rem;box-shadow:var(--shadow);transition:border-color .25s,transform .25s}
 .card:hover{border-color:var(--primary-line);transform:translateY(-2px)}
 .card .top{display:flex;justify-content:space-between;align-items:flex-start;gap:.8rem;flex-wrap:wrap;margin-bottom:.85rem}
-.card .nm{font-family:'Bricolage Grotesque','Be Vietnam Pro',system-ui,sans-serif;font-size:1.08rem;font-weight:600;letter-spacing:-.01em}
+.card .nm{font-family:'IBM Plex Sans','Be Vietnam Pro',system-ui,sans-serif;font-size:1.08rem;font-weight:600;letter-spacing:-.01em}
 .badges{display:flex;gap:.4rem;flex-wrap:wrap}
 .badge{font-family:'IBM Plex Mono',monospace;font-size:.6rem;padding:.24rem .55rem;border-radius:6px;text-transform:uppercase;letter-spacing:.08em;white-space:nowrap;border:1px solid transparent}
 .b-semi{background:var(--amber-soft);color:var(--amber);border-color:var(--amber-soft)}
@@ -193,7 +193,7 @@ nav a.active{color:var(--primary);background:var(--primary-soft)}
 /* ---- publication ---- */
 .pub{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--violet);border-radius:0 12px 12px 0;padding:1.2rem 1.4rem;box-shadow:var(--shadow)}
 .pub .venue{font-family:'IBM Plex Mono',monospace;font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--violet);margin-bottom:.5rem}
-.pub .ti{font-family:'Bricolage Grotesque','Be Vietnam Pro',system-ui,sans-serif;font-size:.98rem;font-weight:600;margin-bottom:.35rem}
+.pub .ti{font-family:'IBM Plex Sans','Be Vietnam Pro',system-ui,sans-serif;font-size:.98rem;font-weight:600;margin-bottom:.35rem}
 .pub .au{font-size:.9rem;color:var(--muted)}
 .pub .au u{text-decoration:underline;text-underline-offset:2px;color:var(--text)}
 .pub .ab{font-size:.9rem;color:var(--muted);margin-top:.6rem}
@@ -204,7 +204,7 @@ nav a.active{color:var(--primary);background:var(--primary-soft)}
 .honor{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--amber);border-radius:0 12px 12px 0;padding:1.1rem 1.25rem;box-shadow:var(--shadow);transition:border-color .2s,transform .2s}
 .honor:hover{transform:translateY(-2px)}
 .honor .yr{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.14em;color:var(--amber);margin-bottom:.4rem}
-.honor .ht{font-family:'Bricolage Grotesque','Be Vietnam Pro',system-ui,sans-serif;font-size:.98rem;font-weight:600;letter-spacing:-.01em;margin-bottom:.35rem}
+.honor .ht{font-family:'IBM Plex Sans','Be Vietnam Pro',system-ui,sans-serif;font-size:.98rem;font-weight:600;letter-spacing:-.01em;margin-bottom:.35rem}
 .honor .hi{font-size:.9rem;color:var(--muted)}
 
 /* ---- contact ---- */
