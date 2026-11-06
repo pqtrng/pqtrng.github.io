@@ -312,7 +312,7 @@ footer{text-align:center;padding:2.6rem 1rem;color:var(--faint);font-size:.7rem;
       </div>
       <div class="track b">
         <div class="tt">▸ track_B · cyber-physical security</div>
-        <div class="tp">I am not a SOC analyst. I build the telemetry pipeline and the multi-stage anomaly-detection infrastructure for the OT layer that SEMI E187 leaves out of scope (PLC/SCADA), aligned with IEC 62443.</div>
+        <div class="tp">I am not a SOC analyst. I build the telemetry pipeline and the multi-stage anomaly-detection infrastructure at the OT process-control layer, framed under IEC 62443.</div>
       </div>
     </div>
 
@@ -425,7 +425,7 @@ footer{text-align:center;padding:2.6rem 1rem;color:var(--faint);font-size:.7rem;
         <div class="nm">CPS Anomaly Detection Pipeline</div>
         <div class="badges"><span class="badge b-semi">Semiconductor</span><span class="badge b-sec">Security</span><span class="badge b-done">Complete</span></div>
       </div>
-      <div class="desc">A DE-first anomaly-detection pipeline on the <strong>HAI</strong> industrial control-system testbed, built so the evaluation is as defensible as the model. Medallion Bronze → Silver → Gold, with Pandera validation and SHA-1 fingerprinting. The feature scaler is fit on train-normal only, and the detection threshold on a held-out <em>calibration</em> split, then applied unchanged to holdout. An LSTM-autoencoder over 60-step windows is benchmarked against a z-score baseline, which turns out to be genuinely hard to beat. Raw window-level metrics are the headline. Point-adjust appears only beside them, with its inflation spelled out, because PA-only recall overstates every detector by 20–25 points. Detection latency is framed as an SLI against a 30-second SLO. The target is the PLC/SCADA layer that <strong>SEMI E187 deliberately leaves out of scope</strong>, aligned instead with IEC 62443 for OT monitoring. It is batch-first, and makes no streaming or real-time claim.</div>
+      <div class="desc">A DE-first anomaly-detection pipeline on the <strong>HAI</strong> industrial control-system testbed, built so the evaluation is as defensible as the model. Medallion Bronze → Silver → Gold, with Pandera validation and SHA-1 fingerprinting. The feature scaler is fit on train-normal only, and the detection threshold on a held-out <em>calibration</em> split, then applied unchanged to holdout. An LSTM-autoencoder over 60-step windows is benchmarked against a z-score baseline, which turns out to be genuinely hard to beat. Raw window-level metrics are the headline. Point-adjust appears only beside them, with its inflation spelled out, because PA-only recall overstates every detector by 20–25 points. Detection latency is framed as an SLI against a 30-second SLO. SEMI E187 covers the computing devices of fab equipment; this pipeline sits at the <strong>process-control layer</strong>, framed under IEC 62443. It is batch-first, and makes no streaming or real-time claim.</div>
       <div class="metric"><span>LSTM-AE raw <b>P 0.814 / R 0.772 / F1 0.792</b> vs best baseline F1 0.738</span><span>All <b>25/25</b> attacks detected · median latency <b>4 s</b> · <b>88%</b> within the 30 s SLO · false-alarm rate <b>0.43%</b></span></div>
       <div class="tech"><span>Python 3.12</span><span>PyTorch</span><span>TensorBoard</span><span>Pandera</span><span>Parquet</span><span>pytest</span><span>GitHub Actions CI</span><span>uv</span></div>
       <div class="links"><a href="https://github.com/pqtrng/cps-anomaly-pipeline" target="_blank" rel="noopener">→ GitHub</a></div>
@@ -460,7 +460,7 @@ footer{text-align:center;padding:2.6rem 1rem;color:var(--faint);font-size:.7rem;
       <br><br>
       In <strong>semiconductor manufacturing</strong> that means the data-pipeline work behind test-and-validation analysis at hardware scale: wafer-defect recognition, equipment-health monitoring, AI-assisted design.
       <br><br>
-      In <strong>cyber-physical security</strong> that means multi-stage anomaly detection on industrial telemetry, at the PLC/SCADA layer that SEMI E187 deliberately excludes, aligned with IEC 62443. This is the bridge between the two directions, and it is where my data-engineering background and my semiconductor interest actually meet.
+      In <strong>cyber-physical security</strong> that means multi-stage anomaly detection on industrial telemetry, at the process-control layer, framed under IEC 62443. This is the bridge between the two directions, and it is where my data-engineering background and my semiconductor interest actually meet.
     </div>
   </section>
 
